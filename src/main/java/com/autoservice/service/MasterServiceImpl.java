@@ -22,29 +22,28 @@ public class MasterServiceImpl implements MasterService{
 
     @Override
     public void create(Master master) {
-        log.info("MasterService in create {}", master);
+        log.info("MasterService in create, {}", master);
         masterRepo.save(master);
     }
 
     @Override
     public void update(Master master) {
-        log.info("MasterService in update , {}", master);
+        log.info("MasterService in update, {}", master);
         masterRepo.save(master);
     }
 
     @Override
     public List<Services> getServices(Long id) {
-        log.info("MasterService in getOrders {}", id);
+        log.info("MasterService in getOrders, {}", id);
         Master master = masterRepo.getById(id);
         return master.getServices();
     }
 
     @Override
     public Double getPayment(Long id) {
-        log.info("Master service in getPayment {}", id);
+        log.info("Master service in getPayment, {}", id);
         Master master = masterRepo.getById(id);
         List<Services> services = master.getServices();
-        double payment = 0.0;
         if(services == null){
             return 0.0;
         }

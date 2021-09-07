@@ -40,7 +40,7 @@ public class OrderRestController {
     @Operation(summary = "Добавление товара к заказу")
     @RequestMapping(value = "{id}/goods", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Orders> addGoodsToOrder(@PathVariable("id") Long id, Goods goods){
-        if(id == null && goods == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if(id == null || goods == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         Orders order = this.ordersService.getById(id);
         if(order == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         this.ordersService.addGoods(id, goods);
@@ -62,7 +62,7 @@ public class OrderRestController {
     @Operation(summary = "Изменение статуса заказа")
     @RequestMapping(value = "{id}/status", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Orders> changeOrderStatus(@PathVariable("id") Long id, OrderStatus status){
-        if(id != null && status == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if(id != null || status == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         Orders order = this.ordersService.getById(id);
         if(order == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         this.ordersService.changeStatus(id, status);

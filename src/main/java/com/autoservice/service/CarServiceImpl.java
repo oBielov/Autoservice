@@ -16,13 +16,13 @@ public class CarServiceImpl implements CarService{
 
     @Override
     public void create(Car car) {
-        log.info("CarService in create {}", car);
+        log.info("CarService in create, {}", car);
         carRepo.save(car);
     }
 
     @Override
     public void update(Car car) {
-        log.info("CarService in update {}", car);
+        log.info("CarService in update, {}", car);
         carRepo.save(car);
     }
 
